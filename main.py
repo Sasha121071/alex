@@ -2988,5 +2988,8 @@ from random import randint
 
 # print("Hello")
 
-a = 5
-print(a)
+# a = 5
+# print(a)
+
+print("Вносим изменения в склонированный проект")
+

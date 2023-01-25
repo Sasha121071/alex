@@ -2986,4 +2986,7 @@ from random import randint
 #
 # summa(2, 3, 3, 4)
 
-print("Hello")
+# print("Hello")
+
+a = 5
+print(a)

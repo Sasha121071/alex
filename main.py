@@ -1460,7 +1460,6 @@
 
 from random import randint
 
-
 # def tpl_sum(t1, t2):
 #     print(t1)
 #     print(t2)
@@ -2992,5 +2991,238 @@ from random import randint
 # print(a)
 
 # print("Вносим изменения в склонированный проект")
-print("Вносим изменения в склонированный проект")
+# print("Вносим изменения в склонированный проект")
 
+# print(int('18'))
+# # print(int('18.5'))
+# print(int(18.5))
+
+# print(int('100', 2))
+# print(int('100', 8))
+# print(int('100', 10))
+# print(int('100', 16))
+
+# print(bin(18))  # 0b10010
+# print(oct(18))  # 0o22
+# print(hex(18))  # 0x12
+#
+# print(0b10010)
+# print(0o22)
+# print(0x12)
+
+# q = 'Pyt'
+# w = "hon"
+# e = q + w
+# print(e)
+# # print(e * 2)
+# # print('q' in e)
+#
+# print(e[-1::-1])
+
+
+# s = "Python"  # Pytton
+# s = s[:3] + 't' + s[4:]
+# print(s)
+
+# def change_char_to_str(s, c_old, c_new):
+#     s2 = ""
+#     for i in range(len(s)):
+#         if s[i] == c_old:
+#             s2 += c_new
+#         else:
+#             s2 += s[i]
+#     return s2
+#
+#
+# str1 = "Я изучая Nython. Мне нравится Nython. Nython очень интересный язык программирования."
+# str2 = change_char_to_str(str1, 'N', 'P')
+# print(str1)
+# print(str2)
+
+# print(u"Привет")
+# print("Привет")
+
+# print(r"C:\folder\file.txt")
+# print("C:\\folder\\file.txt\\")
+#
+# print(r"C:\folder\\"[:-1])
+# print(r"C:\folder" + "\\")
+
+# from math import pi
+#
+# name = "Дмитрий"
+# age = 25
+# print(f"Меня зовут {name}. Мне {age} лет.")
+# print(f"Значение числа pi: {round(pi, 2)}")
+# print(f"Значение числа pi: {pi:.2f}")
+#
+# x = 5
+# y = 10
+# print(f"{x} x {y} / 2 = {x * y / 2}")
+# print(f"{x = }, {y = }")
+
+# a = 74
+# print(f"{{{{{a}}}}}")
+
+
+# dir_name = "my_doc"
+# file_name = "data.txt"
+# print(fr"home\{dir_name}\{file_name}")
+
+
+# s = """
+#     <div>
+#         <p>Текст</p>
+#     </div>
+# """
+# print(s)
+# '''<div>
+#     <p>Текст</p>
+# </div>
+# '''
+# # print(s1)
+#
+# "Hello"
+# def square(n):
+#     """Принимает число n, возвращает квадрат числа n"""
+#     return n ** 2
+#
+#
+# print(square(5))
+#
+# print(square.__doc__)
+# a = list.__doc__
+# print(a)
+
+# import math
+#
+#
+# def cylinder(r, h):
+#     """
+#     Вычисляет площадь цилиндра.
+#
+#     Вычисляет площадь цилиндра на основании заданной высоты и радиуса основания
+#
+#     :param r: положительно число, радиус основания цилиндра
+#     :param h: положительно число, высота цилиндра
+#     :return: положительно число, площадь цилиндра
+#     """
+#     return 2 * math.pi * r * (r + h)
+#
+#
+# print(cylinder(2, 4))
+# print(cylinder.__doc__)
+
+# print(ord('a'))  # 97
+
+# while True:
+#     n = input("-> ")
+#     if n != "-1":
+#         print(ord(n))
+#     else:
+#         break
+
+
+# my_str = "Test string for mee"
+# arr = [ord(x) for x in my_str]
+# print("ASCII коды:", arr)
+# arr = [sum(arr) // len(arr)] + arr
+# print("Среднее арифметическое:", arr)
+# arr += [ord(x) for x in (input("-> ")[:3]) if ord(x) not in arr]
+# print(arr)
+# # if arr[-1] in arr[:-1]:
+# print(arr.count(arr[-1]) - 1)
+# arr.sort(reverse=True)
+# print(arr)
+
+# print(chr(33))
+# print(chr(8364))
+
+# a = 122
+# b = 97
+# if a > b:
+#     a, b = b, a
+# for i in range(a, b + 1):
+#     print(chr(i), end=" ")
+
+# print('apple' < 'banana')
+# print('apple' > 'Apple')
+# print(ord('a'))
+# print(ord("A"))
+#
+# print(9 > 5)
+# print(ord("9"))
+# print(ord("5"))
+
+# arr = ['black', 'blue', 'yellow']
+# arr.sort()
+# print(arr)
+
+# from random import randint
+#
+#
+# def random_password():
+#     rand_len = randint(6, 16)
+#     res = ""
+#
+#     for i in range(rand_len):
+#         rand_char = chr(randint(33, 126))
+#         res += rand_char
+#
+#     return res
+#
+#
+# print("Ваш случайный пароль:", random_password())
+
+
+# print(dir(str))
+
+s = "hello, WORLD! I am learning Python."
+# print(s.capitalize())  # Hello, world! i am learning python.
+# print(s.lower())  # hello, world! i am learning python.
+# print(s.upper())  # HELLO, WORLD! I AM LEARNING PYTHON.
+# print(s.swapcase())  # HELLO, world! i AM LEARNING pYTHON.
+
+# print(s.count("h", 1, -4))
+#
+# print(s.find("e"))  # ищет в строке заданную подстроку (возвращает "-1" - если подстрока не найдена)
+# print(s.rfind("e"))
+#
+# print(s.index("e"))  # ищет в строке заданную подстроку (ValueError - если подстрока не найдена)
+# print(s.rindex("e"))
+
+# s = 'Hello world'
+# s = s[s.find(' ') + 1:] + ' ' + s[:s.find(' ')]
+# print(s)
+
+# s = 'ab12c59p7dq'
+# d = list(filter(lambda x: '0' <= x <= '9', s))
+# print(d)
+
+# q = [i for i in s if i in '0123456789']
+# print(q)
+
+# s = 'ab12c59p7dq'
+# digits = []
+# for ch in s:
+#     if '0123456789'.find(ch) != -1:
+#         digits.append(int(ch))
+# print(digits)
+
+# s = 'ab12c59p7dq'
+# digits = []
+# # j = [ord(x) for x in list(s)]
+# # print(j)
+# for i in s:
+#     if 48 <= ord(i) <= 57:
+#         digits.append(i)
+# print(digits)
+
+print('abc123'.isalnum())  # состоит ли строка из букв и цифр
+print('abc123!'.isalnum())
+
+print('ABCcbf'.isalpha())  # состоит ли строка из букв (любой регистр)
+print('ABCcbf@'.isalpha())
+
+print('123'.isdigit())  # состоит ли строка из цифр
+print('123#a'.isdigit())

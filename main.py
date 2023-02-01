@@ -3177,7 +3177,7 @@ from random import randint
 
 # print(dir(str))
 
-s = "hello, WORLD! I am learning Python."
+# s = "hello, WORLD! I am learning Python."
 # print(s.capitalize())  # Hello, world! i am learning python.
 # print(s.lower())  # hello, world! i am learning python.
 # print(s.upper())  # HELLO, WORLD! I AM LEARNING PYTHON.
@@ -3218,11 +3218,126 @@ s = "hello, WORLD! I am learning Python."
 #         digits.append(i)
 # print(digits)
 
-print('abc123'.isalnum())  # состоит ли строка из букв и цифр
-print('abc123!'.isalnum())
+# print('abc123'.isalnum())  # состоит ли строка из букв и цифр
+# print('abc123!'.isalnum())
+#
+# print('ABCcbf'.isalpha())  # состоит ли строка из букв (любой регистр)
+# print('ABCcbf@'.isalpha())
+#
+# print('123'.isdigit())  # состоит ли строка из цифр
+# print('123#a'.isdigit())
 
-print('ABCcbf'.isalpha())  # состоит ли строка из букв (любой регистр)
-print('ABCcbf@'.isalpha())
+# print('py'.center(11, "-"))
+# print('py'.center(2))
+# print("     py".lstrip())
+# print("py     ".rstrip())
+# print("      py     ".strip())
 
-print('123'.isdigit())  # состоит ли строка из цифр
-print('123#a'.isdigit())
+# print('https://www.python.org'.lstrip('/:pths'))
+# print(";py.$$$".rstrip(";$."))
+# print('https://www.python.orgw'.strip('/:pthsorg.w'))
+# print('https://www.python.orgw'.lstrip('/:pths').rstrip('org.w'))
+
+# print(s.startswith("I am", 14))
+# print(s.endswith("on."))
+
+
+# str1 = "Я изучая Nython. Мне нравится Nython. Nython очень интересный язык программирования."
+# print(str1.replace("Nython", "Python", 2))
+
+
+st = r"Замените в этой строке все появления буквы 'О', кроме первого и последнего вхождения."
+ch = 'о'
+a = st[:st.find(ch) + 1]
+print(a)
+b = st[st.find(ch) + 1:st.rfind(ch)]
+print(b)
+c = st[st.rfind(ch):]
+print(c)
+print(a + b.replace(ch, 'О') + c)
+# print(st.replace("о", "О"))
+
+# print(str1[:str1.find('о') + 1] + str1[str1.find('о') + 1: str1.rfind('о')].replace('о', 'О')  + str1[str1.rfind('о'):])
+
+# s = "-"
+# seq = ("a", "b", "c")
+# print(s.join(seq))
+#
+# print("..".join(['1', '99']))
+# print(":".join("Hello"))
+
+# print("Строка разделенная пробелами".split())
+# print("www.python.org.ru".split(".", 2))
+# print("www.python.org.ru".rsplit(".", 2))
+
+# a = input("-> ").split()
+# a = list(map(int, a))
+# print(a)
+
+# a = input('ФИО: ').split()
+# print(a)
+# print(f'{a[0]} {a[1][0]}. {a[2][0]}.')
+
+# Регулярные выражения
+
+import re
+
+# print(dir(re))
+
+# s = "Я ищу совпадения в 2023 году. И я их найду в 2 счёта."
+# reg = 'Я ищу'
+# print(re.findall(reg, s))  # возвращает список, содержащий все совпадения
+# print(re.search(reg, s))  # возвращает первый найденный элемент по шаблону
+# # print(re.search(reg, s).span())
+# # print(re.search(reg, s).start())
+# # print(re.search(reg, s).end())
+# # print(re.search(reg, s).group())
+# print(re.match(reg, s))  # возвращает первый найденный элемент по шаблону с начала строки
+#
+# reg = r'\.'
+# print(re.split(reg, s)[:-1])  # возвращает список, в котором строка разбита по шаблону
+# print(re.sub(reg, "!", s, 1))  # поиск и замена
+
+
+s = "Я ищу совпадения в 2023 году. И я их найду в 200000 - счёта. [98_75] Hello"
+# reg = r'[А-яЁё.\[\]-]'
+# reg = r'.[^2]'
+# print(re.findall(reg, s))
+# print(ord("Ё"))
+# print(ord("ё"))
+
+# s1 = "Час в 24-часовом формате от 00 до 23. 2021-06-15T21:58. Минуты, в диапазоне от 00 до 59. 2021-06-15T01:09."
+# rg = r'[0-2][0-9]:[0-5][0-9]'
+# print(re.findall(rg, s1))
+
+# reg = r'20*'
+# print(re.findall(reg, s))
+
+# d = "Цифры: 7, +17, -42, 0012, 0.3"
+# print(re.findall(r'[+-]?[\d.]+', d))
+# print(re.findall(r'[+-]?\d+\.?\d*', d))
+
+
+# d = "05-03-1987 # Дата рождения"
+#
+# print("Дата рождения:", re.sub(r"#.*", "", d))
+#
+# # Дата рождения: 05.03.1987
+# print('Дата рождения:', re.sub('-', '.', re.sub(r'\s#.*', '', d)))  # re.sub('-', '.', '05-03-1987')
+
+# d = "author=Пушкин А.С.; title  = Евгений Онегин; price =200; year= 1831"
+# # reg = r'\w+\s*=\s*\w+\s*[\w.]+'
+# reg = r'\w+\s*=[^;]+'
+# print(re.findall(reg, d))
+
+# s1 = "12 сентября 2023 года 235682"
+# reg = r'\d{0,4}'
+# # print(re.findall(reg, s1))
+#
+# t = "+7 499 456-45-78, +74994564578, +7 (499) 456 45 78, 74994564578"
+# print(re.findall(r'\+?7\d{10}', t))
+
+
+# reg = r'^\w+\s\w+'
+reg = r'\w+$'
+# print(re.findall(reg, s))

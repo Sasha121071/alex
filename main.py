@@ -3282,6 +3282,7 @@ from random import randint
 
 import re
 
+
 # print(dir(re))
 
 # s = "Я ищу совпадения в 2023 году. И я их найду в 2 счёта."
@@ -3478,6 +3479,150 @@ import re
 # print(re.sub(reg, r'\2.\1.\3', s))
 
 
-s = "yandex.com and yandex.ru"  # http://yandex.com  and http://yandex.ru
-reg = r"(([a-z0-9-]{2,}\.)+[a-z]{2,4})"
-print(re.sub(reg, r'http://\1', s))
+# s = "yandex.com and yandex.ru"  # http://yandex.com  and http://yandex.ru
+# reg = r"(([a-z0-9-]{2,}\.)+[a-z]{2,4})"
+# print(re.sub(reg, r'http://\1', s))
+
+
+# Рекурсия
+
+# def elevator(n):
+#     if n == 0:
+#         print("Вы в подвале")
+#         return
+#     # print("=>", n)
+#     elevator(n - 1)
+#     print(n, end=" ")
+#
+#
+# n1 = int(input("На каком Вы этаже: "))
+# elevator(n1)
+
+# def sum_list(lst):
+#     res = 0
+#     for i in lst:
+#         res += i
+#     return res
+#
+#
+# print(sum_list([1, 3, 5, 7, 9]))  # 25
+
+# def sum_list(lst):  # [9]
+#     if len(lst) == 1:
+#         print(lst, "=> lst[0]:", lst[0])
+#         return lst[0]  # 9 +
+#     else:
+#         print(lst, "=> lst[0]:", lst[0])
+#         return lst[0] + sum_list(lst[1:])  # 1 3 5 7
+#
+#
+# print(sum_list([1, 3, 5, 7, 9]))
+
+# def to_str(n, base):  # 15
+#     convert = "0123456789ABCDEF"
+#     if n < base:
+#         return convert[n]  # convert[15] = 'F'
+#     else:
+#         return to_str(n // base, base) + convert[n % base]  # convert[14] = 'E'
+#
+#
+# print(to_str(254, 16))
+
+# names = ["Adam", ["Bob", ["Chet", "Cat"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+# print(names[0])
+# print(isinstance(names[0], list))
+# print(names[1][1])
+# print(isinstance(names[1][1], list))
+# print(names[1][1][0])
+# print(isinstance(names[1][1][0], list))
+# print(names)
+
+
+# def count_items(item_list):
+#     count = 0
+#     for item in item_list:
+#         if isinstance(item, list):
+#             count += count_items(item)
+#         else:
+#             count += 1
+#     return count
+#
+#
+# print(count_items(names))
+#
+# names = ["Adam", ["Bob", ["Chet", "Cat", "aaa"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+# count = 0
+# for i in names:
+#     if isinstance(i, list):
+#         for j in i:
+#             if isinstance(j, list):
+#                 # for k in j:
+#                 #     count += 1
+#                 count += len(j)
+#             else:
+#                 count += 1
+#     else:
+#         count += 1
+# print(count)
+
+# def union(s):  # ["Adam", ["Bob", ["Chet", "Cat"], "Bard", "Bert"], "Alex", ["Bea", "Bill"], "Ann"]
+#     if not s:  # len(s) == 0  s == []
+#         return s
+#     if isinstance(s[0], list):
+#         return union(s[0] + union(s[1:]))  # 'Bob' + Chet'
+#     return s[:1] + union(s[1:])  # ['Adam']
+#
+#
+# print(union(names))
+
+
+# def remove(text):  #
+#     if not text:
+#         return ""
+#     if text[0] == "\t" or text[0] == " ":
+#         return remove(text[1:])
+#     else:
+#         return text[0] + remove(text[1:])  # HelloWorld! + ""
+#
+#
+# print(remove(" Hello\tWorld! "))
+
+
+# Линейный (последовательный) поиск
+
+# def seq_search(s, item):
+#     found = False  # True
+#     pos = 0  # 2
+#     while pos < len(s) and not found:
+#         if s[pos] == item:
+#             found = True
+#         else:
+#             pos += 1
+#     return found
+
+
+# lst = [1, 2, 32, 8, 17, 19, 42, 13, 0]
+# print(lst)
+# print(seq_search(lst, 32))
+# print(seq_search(lst, 3))
+
+def seq_search(s, item):
+    found = False  #
+    pos = 0  # 3
+    stop = False  # True
+    while pos < len(s) and not found and not stop:
+        if s[pos] == item:
+            found = True
+        else:
+            if s[pos] > item:  # 8 > 3
+                stop = True
+            else:
+                pos += 1
+    return found
+
+
+lst = [1, 2, 32, 8, 17, 19, 42, 13, 0]
+lst.sort()
+print(lst)
+print(seq_search(lst, 32))
+print(seq_search(lst, 3))

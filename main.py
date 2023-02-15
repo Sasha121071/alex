@@ -3282,7 +3282,6 @@ from random import randint
 
 import re
 
-
 # print(dir(re))
 
 # s = "Я ищу совпадения в 2023 году. И я их найду в 2 счёта."
@@ -3589,6 +3588,8 @@ import re
 
 
 # Линейный (последовательный) поиск
+from random import randint
+import time
 
 # def seq_search(s, item):
 #     found = False  # True
@@ -3599,30 +3600,394 @@ import re
 #         else:
 #             pos += 1
 #     return found
+#
+#
+# # lst = [1, 2, 32, 8, 17, 19, 42, 13, 0]
+# lst = [randint(1, 99) for i in range(100000)]
+# start = time.monotonic()
+# # print(lst)
+# # print(seq_search(lst, 32))
+# print(seq_search(lst, 0))
+# res = time.monotonic() - start
+# print(round(res, 3), 'sec')
 
 
+# def seq_search(s, item):
+#     found = False  #
+#     pos = 0  # 3
+#     stop = False  # True
+#     while pos < len(s) and not found and not stop:
+#         if s[pos] == item:
+#             found = True
+#         else:
+#             if s[pos] > item:  # 8 > 3
+#                 stop = True
+#             else:
+#                 pos += 1
+#     return found
+#
+#
 # lst = [1, 2, 32, 8, 17, 19, 42, 13, 0]
+# lst = [randint(1, 99) for i in range(100000)]
+# lst.sort()
+# start = time.monotonic()
 # print(lst)
-# print(seq_search(lst, 32))
+# # print(seq_search(lst, 32))
 # print(seq_search(lst, 3))
-
-def seq_search(s, item):
-    found = False  #
-    pos = 0  # 3
-    stop = False  # True
-    while pos < len(s) and not found and not stop:
-        if s[pos] == item:
-            found = True
-        else:
-            if s[pos] > item:  # 8 > 3
-                stop = True
-            else:
-                pos += 1
-    return found
+# res = time.monotonic() - start
+# print(round(res, 3), 'sec')
 
 
-lst = [1, 2, 32, 8, 17, 19, 42, 13, 0]
-lst.sort()
-print(lst)
-print(seq_search(lst, 32))
-print(seq_search(lst, 3))
+# Бинарный поиск
+
+# def binary_search(s, item):
+#     first = 0
+#     last = len(s) - 1  # 3
+#     found = False
+#
+#     while first <= last and not found:
+#         midpoint = (first + last) // 2  # 4  # 1
+#         if s[midpoint] == item:
+#             found = True
+#         else:
+#             if item < s[midpoint]:  # 1 < 13
+#                 last = midpoint - 1  # 3
+#             else:
+#                 first = midpoint + 1
+#
+#     return found
+#
+#
+# lst = [0, 1, 2, 8, 13, 17, 19, 32, 42]
+# print(binary_search(lst, 17))
+# print(binary_search(lst, 3))
+
+# def bubble(array):
+#     for i in range(len(array) - 1):
+#         for j in range(len(array) - i - 1):
+#             if array[j] > array[j + 1]:
+#                 array[j], array[j + 1] = array[j + 1], array[j]
+#
+#
+# lst = [randint(1, 99) for i in range(10000)]
+# start = time.monotonic()
+# bubble(lst)
+# res = time.monotonic() - start
+# print(round(res, 3), 'sec')
+
+# def merge_sort(a):
+#     n = len(a)
+#     if n < 2:
+#         return a
+#
+#     left = merge_sort(a[:n // 2])
+#     right = merge_sort(a[n // 2: n])
+#
+#     i = j = 0
+#     res = []
+#
+#     while i < len(left) or j < len(right):
+#         if not i < len(left):
+#             res.append(right[j])
+#             j += 1
+#         elif not j < len(right):
+#             res.append(left[i])
+#             i += 1
+#         elif left[i] < right[j]:
+#             res.append(left[i])
+#             i += 1
+#         else:
+#             res.append(right[j])
+#             j += 1
+#     return res
+#
+#
+# array = [randint(1, 99) for i in range(10000)]
+# start = time.monotonic()
+# array = merge_sort(array)
+# res = time.monotonic() - start
+# print(round(res, 3), 'sec')
+
+# Сортировка Шелла
+#
+# def shell_sort(s):  # [10, 21, 9, 14, 67, 44, 26, 87]
+#     gap = len(a)  # 1
+#
+#     while gap > 0:
+#         for val in range(gap, len(s)):  # range(2, 8)  val = 2
+#             cur_val = s[val]  # s[3] = 14
+#             pos = val  # 3
+#
+#             while pos >= gap and s[pos - gap] > cur_val:  # 3 >= 2 and s[1] > 14
+#                 s[pos] = s[pos - gap]
+#                 pos -= gap
+#                 s[pos] = cur_val
+#
+#         gap //= 2  # 1
+#     return s
+#
+#
+# # a = [10, 21, 9, 14, 67, 44, 26, 87]
+# a = [randint(1, 99) for i in range(10000)]
+# start = time.monotonic()
+# # print(a)
+# shell_sort(a)
+# # print(a)
+# res = time.monotonic() - start
+# print(round(res, 3), 'sec')
+
+
+# Быстрая сортировка
+
+# def quick_sort(a):
+#     if len(a) > 1:
+#         x = a[(len(a) - 1) // 2]  # a[(7 - 1) // 2] = 3  = a[3] = 4
+#
+#         low = [i for i in a if i < x]  # [-3, -8]
+#         eq = [i for i in a if i == x]  # [4]
+#         hi = [i for i in a if i > x]  # [9, 5, 7, 8]
+#         a = quick_sort(low) + eq + quick_sort(hi)
+#
+#     return a
+#
+#
+# # lst = [9, 5, -3, 4, 7, 8, -8]
+# lst = [randint(1, 99) for i in range(1000000)]
+# start = time.monotonic()
+# # print(lst)
+# # lst = quick_sort(lst)
+# # print(lst)
+# lst.sort()
+# res = time.monotonic() - start
+# print(round(res, 3), 'sec')
+
+
+# Файлы
+
+# f = open(r'D:\Python214\214\text.txt')  # mode='r'
+# print(*f)
+# print(f)
+# print(f.mode)
+# print(f.name)
+# print(f.encoding)
+# f.close()
+# print(f.closed)
+
+
+# f = open('text.txt')
+# print(f.read(3))
+# print(f.read())
+# f.close()
+
+
+# f = open('test.txt')
+# # print(f.readline())
+# # print(f.readline(8))
+# # print(f.readline())
+# # print(f.readline())
+# print(f.readlines(16))
+# print(f.readlines())
+# f.close()
+
+# i = 0
+# f = open('test.txt')
+# for line in f:
+#     # print(line)
+#     i += 1
+# f.close()
+# print(i)
+#
+# f = open('test.txt')
+# # print(len(f.readlines()))
+# # print(len([*f]))
+# print([*f])
+# f.close()
+
+# f = open('test1.txt', 'w')
+# f.write('Hello\nWorld!\n')
+# f.close()
+#
+# f = open('test1.txt', 'a')
+# f.write('New text.')
+# f.close()
+
+# f = open('xyz.txt', 'a')
+# lines = ['\nThis is line 1', '\nThis is line 2']
+# f.writelines(lines)
+# f.close()
+
+
+# f = open('xyz.txt', 'w')
+# lst = [str(i ** 5) for i in range(1, 20)]
+# print(lst)
+# for index in lst:
+#     f.write(index + "\t")
+# f.close()
+
+# my_file = open("text1.txt", 'w')
+# my_file.write("Заменить строку в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;")
+# my_file.close()
+#
+# my_file = open("text1.txt", 'r')
+# read_file = my_file.readlines()
+# print(read_file)
+# read_file[1] = "Hello World!\n"
+# print(read_file)
+# my_file.close()
+#
+# my_file = open("text1.txt", 'w')
+# my_file.writelines(read_file)
+# my_file.close()
+
+# my_file = open('text2.txt', 'w')
+# my_file.write('Замена строки в текстовом файле;\nизменить строку в списке;\nзаписать список в файл;')
+# my_file.close()
+#
+# my_file = open('text2.txt', 'r')
+# lst = my_file.readlines()
+# my_file.close()
+#
+# print(lst)
+# num = int(input('Номер строки для удаления: '))
+# lst.pop(num - 1)  # 2 - 1  = 1
+# print(lst)
+#
+# my_file = open('text2.txt', 'w')
+# my_file.write(''.join([*lst]))
+# my_file.close()
+
+# f = open('text.txt', 'r')
+# print(f.read(3))
+# print(f.tell())
+# print(f.seek(1))
+# print(f.read())
+# print(f.tell())
+# f.close()
+
+# f = open('text.txt', 'a+')
+# print(f.mode)
+# f.mode = 'w+'
+# print(f.mode)
+# print(f.tell())
+# print(f.read())
+# print(f.seek(0))
+# print(f.read())
+# f.close()
+
+# with open('text.txt', 'w+') as f:
+#     print(f.write('12345\n67890'))
+#
+# with open('text.txt', 'r') as f:
+#     for line in f:
+#         print(line[:3])
+
+
+# file_name = 'res.txt'
+# lst = [4.5, 2.8, 3.9, 1.0, 0.3, 4.33, 7.77]
+# print(list(map(str, lst)))
+#
+# with open(file_name, 'w+') as my_file:
+#     my_file.write('\t'.join(map(str, lst)))
+
+
+# with open(file_name, 'r+') as my_file:
+#     new_lst = my_file.read().split('\t')  # ['4.5',	'2.8', '3.9', '1.0', '0.3',	'4.33', '7.77']
+#
+# print(new_lst)
+# print(len(new_lst))
+# print(list(map(float, new_lst)))
+# print(f'Sum = {sum(map(float, new_lst))}')
+
+
+# def longest_world(file):
+#     with open(file, 'r') as text:
+#         w = text.read().split()
+#         max_length = len(max(w, key=len))
+#         print(w)
+#         print(max_length)
+#         res = [word for word in w if len(word) == max_length]
+#         if len(res) == 1:
+#             return res[0]
+#         return res
+#
+#
+# print(longest_world('test.txt'))
+
+# text = "Строка №1\nСтрока №2\nСтрока №3\nСтрока №4\nСтрока №5\nСтрока №6\nСтрока №7\nСтрока №8\nСтрока №9\nСтрока №10\n"
+#
+# with open('one.txt', 'w') as f:
+#     f.write(text)
+
+# read_file = 'one.txt'
+# write_file = 'two.txt'
+#
+# with open(read_file, 'r') as fr, open(write_file, 'w') as fw:
+#     for line in fr:
+#         line = line.replace("Строка", "Линия - ")
+#         fw.write(line)
+
+# Модуль OS или OS.PATH
+
+import os
+# import os.path
+
+
+# print(os.getcwd())  # текущая директория
+
+# print(os.listdir())  # список директорий и файлов по указанному пути
+# print(os.listdir(".."))
+
+# os.mkdir("folder")  # создать папку
+
+# os.makedirs("nested1/nested12/nested13/3/4")  # создает не только конечную директорию, но и промежуточные папки
+
+# os.remove('text.txt')  # удаление файла
+
+# os.rmdir("folder")  # удаление пустой папки
+
+# os.rename('nested1', 'test')  # переименовывает папки и файлы
+# os.rename('two.txt', 'test/test1.txt')
+# os.renames('text3.txt', 'text/test2.txt')  # переименовывает папки и файлы, создавая промежуточные директории
+
+# for root, dirs, files in os.walk('test', topdown=True):
+#     print("Root:", root)
+#     print("Sub_dirs:", dirs)
+#     print("Files:", files)
+
+
+# def remove_empty_dirs(root_tree):
+#     print(f"Удаление пустых директорий в ветви {root_tree}")
+#     print("-" * 50)
+#     for root, dirs, files in os.walk(root_tree):
+#         if not os.listdir(root):
+#             os.rmdir(root)
+#             print(f"Директория {root} удалена.")
+#     print("-" * 50)
+#
+#
+# remove_empty_dirs('test')
+
+
+# print(os.path.split(r'D:\Python214\214\test\nested12\nested13\text1.txt'))  # разбивает путь на кортеж (head, tail)
+#
+# print(os.path.dirname(r'D:\Python214\214\test\nested12\nested13\text1.txt'))
+# print(os.path.basename(r'D:\Python214\214\test\nested12\nested13\text1.txt'))
+
+# print(os.path.join('test', r'D:\Python214', 'nested12', 'text1.txt'))  # соединяет один или несколько компонентов пути
+# с учетом особенностей OS
+# /Python214/nested12/text1.txt
+# D:\Python214\nested12\text1.txt
+
+# print(os.path.exists(r'D:\Python214\214\test\nested12\nested13\text1.txt'))  # возвращает True, если указанный путь
+# существует
+
+import time
+
+path = r'D:\Python214\214\venv\Scripts\python.exe'
+print(os.path.getsize(path) // 1024)
+print(os.path.getmtime(path))  # последнее изменение файла
+print(os.path.getctime(path))  # создание файла
+print(os.path.getatime(path))  # последней доступ файла
+
+t = time.strftime("%d.%m.%Y, %H:%M:%S", time.localtime(os.path.getctime(path)))
+print(t)

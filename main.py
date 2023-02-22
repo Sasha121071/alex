@@ -4207,27 +4207,349 @@
 # print(h1.get_address())
 
 
+# class Person:
+#     skill = 10
+#     # name = ""
+#     # surname = ""
+#
+#     def __init__(self, name, surname):
+#         self.name = name
+#         self.surname = surname
+#
+#     def print_info(self):
+#         print("Данные сотрудника:", self.name, self.surname)
+#
+#     def add_skill(self, k):
+#         self.skill += k
+#         print("Квалификация сотрудника:", self.skill, "\n")
+#
+#
+# p1 = Person("Viktor", "Reznik")
+# p1.print_info()
+# p1.add_skill(3)
+#
+# p2 = Person("Anna", "Dolgih")
+# p2.print_info()
+# p2.add_skill(2)
+
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         print("Экземпляр класса создан!")
+#
+#     def __del__(self):
+#         print("Экземпляр класса удален!")
+#
+#
+# p1 = Point(5, 10)
+# print(p1.x, p1.y)
+# # del p1
+# p1 = 5
+# print(type(p1))
+# print(p1.__dict__)
+
+
+# class Point:
+#     count = 0  # 3
+#
+#     def __init__(self, x, y):
+#         self.x = x
+#         self.y = y
+#         Point.count += 1
+#
+#
+# p1 = Point(5, 10)
+# p2 = Point(15, 20)
+# p3 = Point(20, 40)
+# print(p1.count)  # 3
+# print(Point.count)  # 3
+# print(p2.count)  # 3
+# print(p3.count)  # 3
+
+
+# class Robot:
+#     k = 0
+#
+#     def __init__(self, name):
+#         self.name = name
+#         print(f"Инициализация робота: {self.name}")
+#         Robot.k += 1
+#
+#     def __del__(self):
+#         print(self.name, "выключается!")
+#         Robot.k -= 1
+#         if Robot.k == 0:
+#             print(self.name, "был последним")
+#         else:
+#             print(f"Работающих роботов осталось {Robot.k}")
+#
+#     def say_hi(self):
+#         print(f"Приветствую! Меня зовут: {self.name}")
+#
+#
+# droid1 = Robot("R2-D2")
+# droid1.say_hi()
+# print(f"Численность роботов: {Robot.k}")
+#
+# droid2 = Robot("C-3PO")
+# droid2.say_hi()
+# print(f"Численность роботов: {Robot.k}")
+#
+# droid3 = Robot("TP-4PO")
+# droid3.say_hi()
+# print(f"Численность роботов: {Robot.k}")
+#
+# print("\nЗдесь роботы могут проделать какую-то работу.\n\n"
+#       "Роботы закончили свою работу. Давайте их выключим.")
+#
+# del droid3
+# del droid1
+# del droid2
+# print(f"Численность роботов: {Robot.k}")
+
+
+# class Point:
+#
+#     def __init__(self, x, y):
+#         self.__x = self.__y = 0
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#
+#     def __check_value(z):
+#         if isinstance(z, int) or isinstance(z, float):
+#             return True
+#         return False
+#
+#     def set_coord(self, x, y):
+#         if Point.__check_value(x) and Point.__check_value(y):
+#             self.__x = x
+#             self.__y = y
+#         else:
+#             print("Координаты должны быть числами")
+#
+#     def get_coord(self):
+#         return self.__x, self.__y
+#
+#     def set_x(self, x):
+#         if Point.__check_value(x):
+#             self.__x = x
+#         else:
+#             print("Координата X должны быть числом")
+#
+#     def set_y(self, y):
+#         if Point.__check_value(y):
+#             self.__y = y
+#         else:
+#             print("Координата Y должны быть числом")
+#
+#     def get_x(self):
+#         return self.__x
+#
+#     def get_y(self):
+#         return self.__y
+#
+#
+# p1 = Point(5, 10)
+# # print(p1.get_coord())
+# # # p1.set_coord(12, 30.8)
+# # p1.set_x(15)
+# # p1.set_y(23)
+# # print(p1.get_x(), p1.get_y())
+# # print(p1.get_coord())
+# # print(p1.__x, p1.__y)
+# # p1.__x = 100
+# # # p1.y = "abc"
+# # # print(p1.x, p1.y)
+# print(p1.__dict__)
+# print(p1._Point__x)
+# p1._Point__x = 20
+# print(p1.__dict__)
+#
+# p2 = Point(3, 7)
+# print(p2.__dict__)
+import math
+
+
+# class Rectangle:
+#     def __init__(self, length, width):
+#         self.__length = self.__width = 0
+#         if Rectangle.__check_value(length) and Rectangle.__check_value(width):
+#             self.__length = length
+#             self.__width = width
+#
+#     def __check_value(z):
+#         if isinstance(z, int) or isinstance(z, float):
+#             return True
+#         return False
+#
+#     def set_width(self, width):
+#         if Rectangle.__check_value(width):
+#             self.__width = width
+#
+#     def set_length(self, length):
+#         if Rectangle.__check_value(length):
+#             self.__length = length
+#
+#     def get_width(self):
+#         return self.__width
+#
+#     def get_length(self):
+#         return self.__length
+#
+#     def get_area(self):
+#         return self.__width * self.__length
+#
+#     def get_perimeter(self):
+#         return 2 * (self.__length + self.__width)
+#
+#     def get_hypotenuse(self):
+#         return round(math.sqrt(self.__length ** 2 + self.__width ** 2), 2)
+#
+#     def get_draw(self):
+#         print(("*" * self.__width + "\n") * self.__length)
+#
+#
+# a = Rectangle(4, 12)
+# a.set_width(9)
+# a.set_length(3)
+# print("Длина прямоугольника:", a.get_length())
+# print("Ширина прямоугольника:", a.get_width())
+# print("Площадь прямоугольника:", a.get_area())
+# print("Периметр прямоугольника:", a.get_perimeter())
+# print("Гипотенуза прямоугольника:", a.get_hypotenuse())
+# a.get_draw()
+
+
+# class Point:
+#     __slots__ = ["__x", "__y", "z"]
+#     count = 0
+#
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#         Point.count += 1
+#
+#
+# p1 = Point(5, 10)
+# p1.z = 1
+# print(p1.z)
+# print(Point.count)
+# print(p1.__dict__)
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     def __set_x(self, x):
+#         self.__x = x
+#
+#     def __get_x(self):
+#         return self.__x
+#
+#     x = property(__get_x, __set_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.x = 25
+# print(p1.x)
+# # p1.__set_x(15)
+# # print(p1.__get_x())
+# print(p1.__dict__)
+
+
+# class Point:
+#     def __init__(self, x, y):
+#         self.__x = x
+#         self.__y = y
+#
+#     @property
+#     def x(self):
+#         return self.__x
+#
+#     @x.setter
+#     def x(self, x):
+#         self.__x = x
+#
+#     @x.deleter
+#     def x(self):
+#         print("Удаление свойства")
+#         del self.__x
+#
+#     # x = property(__get_x, __set_x, __del_x)
+#
+#
+# p1 = Point(5, 10)
+# p1.x = 25
+# print(p1.x)
+# del p1.x
+# print(p1.__dict__)
+
+# class KgToPounds:
+#     def __init__(self, kg):
+#         self.__kg = kg
+#
+#     @property
+#     def kg(self):
+#         return self.__kg
+#
+#     @kg.setter
+#     def kg(self, new_kg):
+#         if isinstance(new_kg, (int, float)):
+#             self.__kg = new_kg
+#         else:
+#             print("Килограммы задаются числами")
+#
+#     def to_pounds(self):
+#         return self.__kg * 2.205
+#
+#
+# weight = KgToPounds(12)
+# print(weight.kg, "кг => ", end="")
+# print(weight.to_pounds(), "фунтов")
+# weight.kg = 41
+# print(weight.kg, "кг => ", end="")
+# print(weight.to_pounds(), "фунтов")
+
+
 class Person:
-    skill = 10
-    # name = ""
-    # surname = ""
+    def __init__(self, name, old):
+        self.__name = name
+        self.__old = old
 
-    def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
+    @property
+    def name(self):
+        return self.__name
 
-    def print_info(self):
-        print("Данные сотрудника:", self.name, self.surname)
+    @name.setter
+    def name(self, n):
+        self.__name = n
 
-    def add_skill(self, k):
-        self.skill += k
-        print("Квалификация сотрудника:", self.skill, "\n")
+    @name.deleter
+    def name(self):
+        del self.__name
+
+    @property
+    def old(self):
+        return self.__old
+
+    @old.setter
+    def old(self, new_old):
+        self.__old = new_old
+
+    @old.deleter
+    def old(self):
+        del self.__old
 
 
-p1 = Person("Viktor", "Reznik")
-p1.print_info()
-p1.add_skill(3)
-
-p2 = Person("Anna", "Dolgih")
-p2.print_info()
-p2.add_skill(2)
+p1 = Person("Irina", 26)
+print(p1.__dict__)
+p1.name = "Igor"
+print(p1.name)
+p1.old = 31
+print(p1.old)
+del p1.old
+print(p1.__dict__)

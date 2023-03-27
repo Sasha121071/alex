@@ -1124,8 +1124,8 @@
 # print(m)
 # print(min(s))
 
-# import math as m
-# from math import sqrt, ceil, floor, pi
+# import geometry as m
+# from geometry import sqrt, ceil, floor, pi
 #
 # num1 = sqrt(2)
 # num2 = ceil(3.2)
@@ -1137,7 +1137,7 @@
 #
 # print(pi)
 
-# from math import pi
+# from geometry import pi
 #
 # num = int(input('Введите радиус окружности: '))
 # print('Длина окружности: ', round(2 * pi * num, 2))
@@ -3048,7 +3048,7 @@
 # # print(r"C:\folder\\"[:-1])
 # # print(r"C:\folder" + "\\")
 #
-# # from math import pi
+# # from geometry import pi
 # #
 # # name = "Дмитрий"
 # # age = 25
@@ -3094,7 +3094,7 @@
 # # a = list.__doc__
 # # print(a)
 #
-# # import math
+# # import geometry
 # #
 # #
 # # def cylinder(r, h):
@@ -3107,7 +3107,7 @@
 # #     :param h: положительно число, высота цилиндра
 # #     :return: положительно число, площадь цилиндра
 # #     """
-# #     return 2 * math.pi * r * (r + h)
+# #     return 2 * geometry.pi * r * (r + h)
 # #
 # #
 # # print(cylinder(2, 4))
@@ -4370,7 +4370,9 @@
 #
 # p2 = Point(3, 7)
 # print(p2.__dict__)
-import math
+# import json
+
+# import geometry
 
 
 # class Rectangle:
@@ -4406,7 +4408,7 @@ import math
 #         return 2 * (self.__length + self.__width)
 #
 #     def get_hypotenuse(self):
-#         return round(math.sqrt(self.__length ** 2 + self.__width ** 2), 2)
+#         return round(geometry.sqrt(self.__length ** 2 + self.__width ** 2), 2)
 #
 #     def get_draw(self):
 #         print(("*" * self.__width + "\n") * self.__length)
@@ -4592,7 +4594,7 @@ import math
 #
 # print(Change.inc(10), Change.dec(10))
 
-# import math
+# import geometry
 #
 #
 # class Area:
@@ -4602,7 +4604,7 @@ import math
 #     def triangle_area(a, b, c):
 #         Area.count += 1
 #         p = (a + b + c) / 2
-#         return math.sqrt(p * (p - a) * (p - b) * (p - c))
+#         return geometry.sqrt(p * (p - a) * (p - b) * (p - c))
 #
 #     @staticmethod
 #     def triangle_area2(a, h):
@@ -5213,7 +5215,7 @@ import math
 # q = Queen()
 # q.draw()
 # q.move()
-# from math import pi
+# from geometry import pi
 #
 #
 # class Table:
@@ -6038,7 +6040,7 @@ import math
 
 # __slots__
 
-# import math
+# import geometry
 #
 #
 # class Point:
@@ -6047,7 +6049,7 @@ import math
 #     def __init__(self, x, y):
 #         self.x = x
 #         self.y = y
-#         self.z = math.sqrt(x * x + y * y)
+#         self.z = geometry.sqrt(x * x + y * y)
 #
 #     @property
 #     def z(self):
@@ -6450,37 +6452,374 @@ import math
 # print(p1.__dict__)
 
 
-class Integer:
-    @classmethod
-    def verify_coord(cls, coord):
-        if not isinstance(coord, int):
-            raise TypeError(f"Координата {coord} должна быть целым числом")
+# class Integer:
+#     @classmethod
+#     def verify_coord(cls, coord):
+#         if not isinstance(coord, int):
+#             raise TypeError(f"Координата {coord} должна быть целым числом")
+#
+#     def __set_name__(self, owner, name):
+#         self.name = "_" + name
+#
+#     def __get__(self, instance, owner):
+#         # return instance.__dict__[self.name]
+#         return getattr(instance, self.name)
+#
+#     def __set__(self, instance, value):
+#         self.verify_coord(value)
+#         # instance.__dict__[self.name] = value
+#         setattr(instance, self.name, value)
+#
+#
+# class Point3D:
+#     x = Integer()
+#     y = Integer()
+#     z = Integer()
+#
+#     def __init__(self, x, y, z):
+#         self.x = x
+#         self.y = y
+#         self.z = z
+#
+#
+# p1 = Point3D(1, 2, 3)
+# print(p1.y)
+# p1.z = 100
+# print(p1.__dict__)
 
-    def __set_name__(self, owner, name):
-        self.name = "_" + name
-
-    def __get__(self, instance, owner):
-        # return instance.__dict__[self.name]
-        return getattr(instance, self.name)
-
-    def __set__(self, instance, value):
-        self.verify_coord(value)
-        # instance.__dict__[self.name] = value
-        setattr(instance, self.name, value)
+# from car import electrocar
+#
+#
+# if __name__ == '__main__':
+#     car1 = electrocar.ElectroCar('Tesla', 'T', 2018, 99000)
+#     car1.show_car()
+#     car1.description_battery()
 
 
-class Point3D:
-    x = Integer()
-    y = Integer()
-    z = Integer()
+# Упаковка данных (Сериализация)
+# Распаковка данных (Десериализация)
 
-    def __init__(self, x, y, z):
-        self.x = x
-        self.y = y
-        self.z = z
+# marshal (.pyc)
+# pickle
+# json
 
 
-p1 = Point3D(1, 2, 3)
-print(p1.y)
-p1.z = 100
-print(p1.__dict__)
+# import pickle
+
+
+# file_name = 'basket.txt'
+#
+# shop_list = {
+#     "фрукты": ["яблоки", "манго"],
+#     "овощи": 'морковь',
+#     "бюджет": 1000
+# }
+#
+# with open(file_name, "wb") as fh:
+#     pickle.dump(shop_list, fh)
+#
+#
+# with open(file_name, 'rb') as fh:
+#     shop_list2 = pickle.load(fh)
+#
+# print(shop_list2)
+
+# class Test:
+#     num = 35
+#     st = 'Привет'
+#     lst = [1, 2, 3]
+#     d = {'first': 'a', 'second': 2}
+#     tpl = (22, 36)
+#
+#     def __str__(self):
+#         return f"Число: {Test.num}\nСтрока: {Test.st}\nСписок: {Test.lst}\nСловарь: {Test.d}\nКортеж: {Test.tpl}"
+#
+#
+# obj = Test()
+#
+# my_obj = pickle.dumps(obj)
+# print(my_obj)
+#
+# new_obj = pickle.loads(my_obj)
+# print(new_obj)
+
+# class Test2:
+#     def __init__(self):
+#         self.a = 35
+#         self.b = "test"
+#         self.c = lambda x: x * x
+#
+#     def __str__(self):
+#         return f"{self.a} {self.b} {self.c(2)}"
+#
+#     def __getstate__(self):
+#         attr = self.__dict__.copy()
+#         del attr['c']
+#         return attr
+#
+#     def __setstate__(self, state):
+#         self.__dict__ = state
+#         self.c = lambda x: x * x
+#
+#
+# item1 = Test2()
+# item2 = pickle.dumps(item1)
+# item3 = pickle.loads(item2)
+# print(item3.__dict__)
+# print(item3)
+
+
+# import json
+
+# data = {
+#     'name': 'Olga',
+#     'age': 35,
+#     20: None,
+#     'hobbies': ('running', 'singing'),
+#     'children': [
+#         {
+#             'firstName': 'Alice',
+#             'age': 6
+#         }
+#     ]
+# }
+#
+# # with open("date.json", 'w') as fw:
+# #     json.dump(data, fw, indent=4)
+# #
+# #
+# # with open("date.json", 'r') as fw:
+# #     data1 = json.load(fw)
+# #
+# # print(data1)
+#
+# st = json.dumps(data)
+# print(st)
+#
+# data2 = json.loads(st)
+# print(data2)
+# print(data2["name"])
+
+# x = {
+#     "name": "Виктор"
+# }
+# y = {
+#     "name": "Виктор"
+# }
+# print(json.dumps(x))
+# print(json.dumps(y, ensure_ascii=False))
+
+# import json
+# from random import choice
+#
+#
+# def get_person():
+#     name = ''
+#     tel = ''
+#
+#     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letters)
+#     # print(name)
+#
+#     while len(tel) != 10:
+#         tel += choice(nums)
+#     # print(tel)
+#
+#     person = {
+#         'name': name,
+#         'tel': tel
+#     }
+#     return person
+#
+#
+# def write_json(person_dict):
+#     try:
+#         data = json.load(open('person.json'))
+#     except FileNotFoundError:
+#         data = []
+#
+#     data.append(person_dict)
+#     with open('person.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(get_person())
+
+
+# {'a':{}, 'b':{}}
+
+
+# import json
+# from random import choice
+#
+#
+# def get_person():
+#     name = ''
+#     tel = ''
+#
+#     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g']
+#     nums = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+#
+#     while len(name) != 7:
+#         name += choice(letters)
+#     # print(name)
+#
+#     while len(tel) != 10:
+#         tel += choice(nums)
+#     # print(tel)
+#
+#     person = {
+#         'name': name,
+#         'tel': tel
+#     }
+#     return person, tel  # person = {"name": "abacgbe", "tel": "6893582115"}, tel = "6893582115"
+#
+#
+# def write_json(person_dict, num):  # person_dict = {"name": "abacgbe", "tel": "6893582115"}, num = "6893582115"
+#     try:
+#         data = json.load(open('person1.json'))  # data = {"6893582115": {"name": "abacgbe", "tel": "6893582115"}}
+#     except FileNotFoundError:
+#         data = {}
+#
+#     data[num] = person_dict  # data = {"6893582115": {"name": "abacgbe", "tel": "6893582115"}, "7893582115": {"name":
+#     # "acabgbe", "tel": "5826893115"}}
+#     with open('person1.json', 'w') as f:
+#         json.dump(data, f, indent=2)
+#
+#
+# for i in range(5):
+#     write_json(get_person()[0], get_person()[1])
+# import json
+#
+#
+# class Student:
+#     def __init__(self, name, marks):
+#         self.name = name
+#         self.marks = marks
+#
+#     def __str__(self):
+#         # a = ''
+#         # for i in self.marks:
+#         #     a += str(i) + ", "
+#         # return f"Студент: {self.name}: {a[:-2]}"
+#         a = ', '.join(map(str, self.marks))  # ['5', '4', '3', '4', '5', '3']
+#         return f"Студент: {self.name}: {a}"
+#
+#     def add_mark(self, mark):
+#         self.marks.append(mark)
+#
+#     def delete_mark(self, index):
+#         self.marks.pop(index)
+#
+#     def edit_mark(self, index, new_mark):
+#         self.marks[index] = new_mark
+#
+#     def average_mark(self):
+#         return round(sum(self.marks) / len(self.marks), 2)
+#
+#     def dump_to_json(self, filename):
+#         try:
+#             data = json.load(open(filename))
+#         except FileNotFoundError:
+#             data = []
+#
+#         data.append({'name': self.name, 'marks': self.marks})
+#
+#         with open(filename, 'w') as f:
+#             json.dump(data, f)
+#
+#     @staticmethod
+#     def load_from_file(filename):
+#         with open(filename) as f:
+#             return json.load(f)
+#
+#
+# class Group:
+#     def __init__(self, students, group):
+#         self.students = students
+#         self.group = group
+#
+#     def __str__(self):
+#         a = '\n'.join(map(str, self.students))
+#         return f"Группа: {self.group}\n{a}\n"
+#
+#     def add_student(self, student):
+#         self.students.append(student)
+#
+#     def remove_student(self, index):
+#         return self.students.pop(index)
+#
+#     @staticmethod
+#     def change_group(group1, group2, index):
+#         return group2.add_student(group1.remove_student(index))
+#
+#     def dump_group(self, file):
+#         try:
+#             data = json.load(open(file))
+#         except FileNotFoundError:
+#             data = []
+#
+#         with open(file, 'w') as f:
+#             stud_list = []
+#             for i in self.students:
+#                 stud_list.append([i.name, i.marks])
+#             data.append(stud_list)
+#             json.dump(data, f, indent=2)
+#
+#     @staticmethod
+#     def upload_journal(file):
+#         with open(file, 'r') as f:
+#             print(json.load(f))
+#
+#
+# st1 = Student('Bodnya', [5, 4, 3, 4, 5, 3])
+# st2 = Student('Nikolaenko', [2, 3, 5, 4, 2])
+# st3 = Student('Birukov', [3, 5, 3, 2, 5, 4])
+#
+# file1 = 'student.json'
+#
+# # st1.dump_to_json(file1)
+# # st2.dump_to_json(file1)
+# # st3.dump_to_json(file1)
+# t = Student.load_from_file(file1)
+#
+# sts = [st1, st2]
+# my_group = Group(sts, 'ГК Python')
+# # print(my_group)
+# # my_group.add_student(st3)
+# # print(my_group)
+# # my_group.remove_student(1)
+# # print(my_group)
+# file2 = 'group.json'
+# group22 = [st2]
+# my_group2 = Group(group22, 'ГК Web')
+# Group.change_group(my_group, my_group2, 0)
+# print(my_group)
+# print(my_group2)
+# my_group.dump_group(file2)
+# # my_group2.dump_group(file2)
+# # print(st1)
+# # st1.add_mark(4)
+# # print(st1)
+# # st1.delete_mark(3)
+# # print(st1)
+# # st1.edit_mark(2, 5)
+# # print(st1)
+# # print(st1.average_mark())
+# Group.upload_journal(file2)
+
+# pip install requests
+
+import requests
+import json
+
+response = requests.get("https://jsonplaceholder.typicode.com/todos")
+todos = json.loads(response.text)
+# print(type(response.text))
+print(type(todos))
+print(todos)
+

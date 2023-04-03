@@ -6814,12 +6814,393 @@
 
 # pip install requests
 
+# import requests
+# import json
+#
+# response = requests.get("https://jsonplaceholder.typicode.com/todos")
+# todos = json.loads(response.text)
+# # print(type(todos))
+# # print(todos)
+# #  {1: 3, 2: 2, 3: 2}
+#
+# todos_by_user = {}
+#
+# for todo in todos:
+#     if todo['completed']:
+#         try:
+#             todos_by_user[todo['userId']] += 1
+#         except KeyError:
+#             todos_by_user[todo['userId']] = 1
+#
+# print(todos_by_user)
+#
+# top_user = sorted(todos_by_user.items(), key=lambda x: x[1], reverse=True)
+# print(top_user)
+#
+# max_complete = top_user[0][1]
+# print(max_complete)
+#
+# users = []
+# for user, num_complete in top_user:
+#     if num_complete < max_complete:
+#         break
+#     users.append(str(user))  # ['5', '10']
+# print(users)
+# max_users = " and ".join(users)
+# print(max_users)
+#
+# s = 's' if len(users) > 1 else ''
+# print(f"User{s} {max_users} completed {max_complete} TODOs")
+#
+#
+# def keep(todo):
+#     is_complete = todo["completed"]  # False
+#     has_max_count = str(todo["userId"]) in users  # True
+#     return is_complete and has_max_count
+#
+#
+# with open("filtered_data.json", 'w') as f:
+#     filtered_todos = list(filter(keep, todos))
+#     # print(filtered_todos)
+#     json.dump(filtered_todos, f, indent=2)
+
+# import json
+#
+# data = {}
+#
+#
+# # def load_data(func):
+# #     def wrap(filename):
+# #         try:
+# #             data = json.load(open(filename))
+# #         except FileNotFoundError:
+# #             data = {}
+# #         func(filename)
+# #         print("Файл сохранен")
+# #
+# #     return wrap
+#
+#
+# class CountryCapital:
+#     # def __init__(self, country, capital):
+#     #     self.country = country
+#     #     self.capital = capital
+#     #     data[self.country] = self.capital
+#     #
+#     # def __str__(self):
+#     #     return f"{self.country}: {self.capital}"
+#
+#     @staticmethod
+#     def load(filename):
+#         try:
+#             data1 = json.load(open(filename))
+#         except FileNotFoundError:
+#             data1 = {}
+#         finally:
+#             return data1
+#
+#     @staticmethod
+#     # @load_data
+#     def add_country(file_name):
+#         new_country = input('Введите название страны: ')
+#         new_capital = input('Введите название столицы: ')
+#         # try:
+#         #     data = json.load(open(file_name))
+#         # except FileNotFoundError:
+#         #     data = {}
+#         data1 = CountryCapital.load(file_name)
+#
+#         data1[new_country] = new_capital
+#
+#         with open(file_name, 'w') as f:
+#             json.dump(data1, f, indent=2)
+#
+#     @staticmethod
+#     # @load_data
+#     def delete_country(file_name):
+#         del_country = input('Введите название страны: ')
+#         # try:
+#         #     data1 = json.load(open(file_name))
+#         # except FileNotFoundError:
+#         #     data1 = {}
+#         data1 = CountryCapital.load(file_name)
+#
+#         if del_country in data1:
+#             del data1[del_country]
+#
+#             with open(file_name, 'w') as f:
+#                 json.dump(data1, f, indent=2)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#     @staticmethod
+#     # @load_data
+#     def search_data(file_name):
+#         # try:
+#         #     data1 = json.load(open(file_name))
+#         # except FileNotFoundError:
+#         #     data1 = {}
+#         country = input('Введите название страны: ')
+#         data1 = CountryCapital.load(file_name)
+#
+#         if country in data1:
+#             print(f"Страна {country} столица {data1[country]} есть в словаре")
+#         else:
+#             print(f"Страны {country} нет в словаре")
+#
+#     @staticmethod
+#     # @load_data
+#     def edit_data(file_name):
+#         country = input('Введите страну для корректировки: ')
+#         new_capital = input('Введите новое название столицы: ')
+#
+#         # try:
+#         #     data1 = json.load(open(file_name))
+#         # except FileNotFoundError:
+#         #     data1 = {}
+#         data1 = CountryCapital.load(file_name)
+#
+#         if country in data1:
+#             data1[country] = new_capital
+#             with open(file_name, 'w') as f:
+#                 json.dump(data1, f, indent=2)
+#         else:
+#             print("Такой страны в базе нет")
+#
+#     @staticmethod
+#     def load_from_file(file_name):
+#         with open(file_name) as f:
+#             print(json.load(f))
+#
+#
+# file = 'list_capital.json'
+# index = ""
+# while True:
+#     index = input('Выбор действия:\n1 - добавление данных\n'
+#                   '2 - удаление данных\n3 - поиск данных\n'
+#                   '4 - редактирование данных\n5 - просмотр данных\n'
+#                   '6 - завершение работы\nВвод: ')
+#     if index == "1":
+#         CountryCapital.add_country(file)
+#     elif index == "2":
+#         CountryCapital.delete_country(file)
+#     elif index == "3":
+#         CountryCapital.search_data(file)
+#     elif index == "4":
+#         CountryCapital.edit_data(file)
+#     elif index == "5":
+#         CountryCapital.load_from_file(file)
+#     elif index == "6":
+#         break
+#     else:
+#         print("Введен некорректный номер")
+
+
+# csv (Comma Separated Values - переменные, разделенные запятыми)
+
+import csv
+#
+# with open("data.csv") as f:
+#     file_reader = csv.reader(f, delimiter=";")
+#     count = 0
+#     for row in file_reader:
+#         print(row)
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {', '.join(row)}")
+#         else:
+#             print(f"\t{row[0]} - {row[1]}. Родился в {row[2]} году.")
+#         count += 1
+#     print(f"Всего в файле {count} строки")
+
+
+# with open("data.csv") as f:
+#     fn = ['Имя', 'Профессия', 'Год рождения']
+#     file_reader = csv.DictReader(f, delimiter=";", fieldnames=fn)
+#     count = 0
+#     for row in file_reader:
+#         # print(row)
+#         if count == 0:
+#             print(f"Файл содержит столбцы: {', '.join(row)}")
+#         print(f"\t{row['Имя']}. Родился в {'Год рождения'} году.")
+#         count += 1
+#     print(f"Всего в файле {count} строки")
+
+
+# with open('student.csv', 'w') as f:
+#     writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#     writer.writerow(["Имя", "Класс", "Возраст"])
+#     writer.writerow(["Женя", "9", "15"])
+#     writer.writerow(["Саша", "5", "12"])
+#     writer.writerow(["Маша", "11", "18"])
+
+
+# data = [['hostname', 'vendor', 'model', 'location'],
+#         ['sw1', 'Cisco', '3750', 'London, Best str'],
+#         ['sw2', 'Cisco', '3850', 'Liverpool, Better str'],
+#         ['sw3', 'Cisco', '3650', 'Liverpool, Better str'],
+#         ['sw4', 'Cisco', '3650', 'London, Best str']]
+#
+#
+# with open('sw_data.csv', 'w') as f:
+#     writer = csv.writer(f, delimiter=";", lineterminator="\r")
+#     # for row in data:
+#     #     writer.writerow(row)
+#     writer.writerows(data)
+
+
+# with open('sw_data1.csv', 'w') as f:
+#     names = ["Имя", "Возраст"]
+#     writer = csv.DictWriter(f, delimiter=";", lineterminator="\r", fieldnames=names)
+#     writer.writeheader()
+#     writer.writerow({"Имя": "Саша", "Возраст": 6})
+#     writer.writerow({"Имя": "Маша", "Возраст": 15})
+#     writer.writerow({"Имя": "Вова", "Возраст": 14})
+
+# data = [{
+#     'hostname': 'sw1',
+#     'location': 'London',
+#     'model': '3750',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw2',
+#     'location': 'Liverpool',
+#     'model': '3850',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw3',
+#     'location': 'Liverpool',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }, {
+#     'hostname': 'sw4',
+#     'location': 'London',
+#     'model': '3650',
+#     'vendor': 'Cisco'
+# }]
+#
+# with open('dict_data.csv', 'w') as f:
+#     writer = csv.DictWriter(f, delimiter=";", lineterminator="\r", fieldnames=list(data[0].keys()))
+#     # ['hostname', 'location', 'model', 'vendor']
+#     writer.writeheader()
+#     for d in data:
+#         writer.writerow(d)
+
+
+# Парсинг данных с сайтов
+
+# from bs4 import BeautifulSoup
+
+# f = open('index.html').read()
+# soup = BeautifulSoup(f, "html.parser")
+# row = soup.find_all("div", class_="name")
+# row = soup.find_all("div", {"class": "name"})
+# row = soup.find_all("div", class_="row")[1].find(class_="name").text
+# row = soup.find_all("div", {"data-set": "salary"})
+# row = soup.find("div", string="Alena").parent
+# row = soup.find("div", string="Alena").find_parent(class_="row")
+# row = soup.find("div", id="whois3").find_next_sibling()
+# row = soup.find("div", id="whois3").find_previous_sibling()
+# print(row)
+
+# def get_copywriter(tag):
+#     whois = tag.find("div", class_="whois")
+#     if "Copywriter" in whois:
+#         return tag
+#     return None
+#
+#
+# f = open('index.html', encoding="utf-8").read()
+# soup = BeautifulSoup(f, "html.parser")
+# copywriter = []
+# row = soup.find_all("div", class_="row")
+# for i in row:
+#     cw = get_copywriter(i)
+#     if cw:
+#         copywriter.append(cw)
+# print(copywriter)
+
+# import re
+# from bs4 import BeautifulSoup
+#
+#
+# def get_salary(s):
+#     pattern = r"\d+"
+#     # res = re.findall(pattern, s)[0]
+#     res = re.search(pattern, s).group()
+#     print(res)
+#
+#
+# f = open('index.html', encoding="utf-8").read()
+# soup = BeautifulSoup(f, "html.parser")
+# row = soup.find_all("div", {"data-set": "salary"})
+# for i in row:
+#     get_salary(i.text)
+
+
+# import requests
+
+
+# res = requests.get("https://ru.wordpress.org/")
+# # print(res.headers['content-type'])
+# # print(res.content)
+# print(res.text)
+
+
+# import requests
+# from bs4 import BeautifulSoup
+#
+#
+# def get_html(url):
+#     res = requests.get(url)
+#     return res.text
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find("header", id="masthead").find("p", class_="site-title").text
+#     print(p1)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
+
+
 import requests
-import json
+from bs4 import BeautifulSoup
+import re
 
-response = requests.get("https://jsonplaceholder.typicode.com/todos")
-todos = json.loads(response.text)
-# print(type(response.text))
-print(type(todos))
-print(todos)
 
+def get_html(url):
+    res = requests.get(url)
+    return res.text
+
+
+def refined(s):
+    return re.sub(r"\D+", "", s)
+
+
+def get_data(html):
+    soup = BeautifulSoup(html, "lxml")
+    p1 = soup.find_all("section", class_="plugin-section")[1]
+    plugins = p1.find_all("article")
+    for plugin in plugins:
+        name = plugin.find("h3").text
+        # url = plugin.find("h3").find("a").get("href")
+        url = plugin.find("h3").find("a")["href"]
+        rating = plugin.find('span', class_="rating-count").find("a").text
+        r = refined(rating)
+        print(r)
+
+
+def main():
+    url = "https://ru.wordpress.org/plugins/"
+    get_data(get_html(url))
+
+
+if __name__ == '__main__':
+    main()

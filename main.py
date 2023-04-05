@@ -7170,37 +7170,183 @@ import csv
 #     main()
 
 
-import requests
-from bs4 import BeautifulSoup
-import re
+# import requests
+# from bs4 import BeautifulSoup
+# import re
+#
+#
+# def get_html(url):
+#     res = requests.get(url)
+#     return res.text
+#
+#
+# def refined(s):
+#     return re.sub(r"\D+", "", s)
+#
+#
+# def write_csv(data):
+#     with open('plugins.csv', 'a') as f:
+#         write = csv.writer(f, delimiter=";", lineterminator="\r")
+#         write.writerow((data['name'], data['url'], data['rating']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     p1 = soup.find_all("section", class_="plugin-section")[1]
+#     plugins = p1.find_all("article")
+#     for plugin in plugins:
+#         name = plugin.find("h3").text
+#         # url = plugin.find("h3").find("a").get("href")
+#         url = plugin.find("h3").find("a")["href"]
+#         rating = plugin.find('span', class_="rating-count").find("a").text
+#         r = refined(rating)
+#         data = {'name': name, 'url': url, 'rating': r}
+#         write_csv(data)
+#
+#
+# def main():
+#     url = "https://ru.wordpress.org/plugins/"
+#     get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
 
 
-def get_html(url):
-    res = requests.get(url)
-    return res.text
+# import requests
+# from bs4 import BeautifulSoup
+#
+#
+# def get_html(url):
+#     res = requests.get(url)
+#     return res.text
+#
+#
+# def refine_cy(s):
+#     return s.split()[-1]
+#
+#
+# def write_csv(data):
+#     with open('plugins1.csv', 'a', encoding='utf-8-sig') as f:
+#         write = csv.writer(f, delimiter=";", lineterminator="\r")
+#         write.writerow((data['name'], data['url'], data['snippet'], data['active'], data['cy']))
+#
+#
+# def get_data(html):
+#     soup = BeautifulSoup(html, "lxml")
+#     elements = soup.find_all("article", class_="plugin-card")
+#     for el in elements:
+#         try:
+#             name = el.find('h3').text
+#         except ValueError:
+#             name = ''
+#
+#         try:
+#             url = el.find('h3').find('a').get("href")
+#         except ValueError:
+#             url = ''
+#
+#         try:
+#             snippet = el.find('div', class_="entry-excerpt").text.strip()
+#         except ValueError:
+#             snippet = ''
+#
+#         try:
+#             active = el.find('span', class_="active-installs").text.strip()
+#         except ValueError:
+#             active = ''
+#
+#         try:
+#             c = el.find('span', class_="tested-with").text.strip()
+#             cy = refine_cy(c)
+#         except ValueError:
+#             cy = ''
+#
+#         data = {
+#             'name': name,
+#             'url': url,
+#             'snippet': snippet,
+#             'active': active,
+#             'cy': cy
+#         }
+#         write_csv(data)
+#
+#
+# def main():
+#     for i in range(13, 26):
+#         url = f"https://ru.wordpress.org/plugins/browse/blocks/page/{i}/"
+#         get_data(get_html(url))
+#
+#
+# if __name__ == '__main__':
+#     main()
 
 
-def refined(s):
-    return re.sub(r"\D+", "", s)
+# from parse import Parser
+#
+#
+# def main():
+#     pars = Parser('https://www.ixbt.com/live/index/news/', 'news.txt')
+#     pars.run()
+#
+#
+# if __name__ == '__main__':
+#     main()
 
 
-def get_data(html):
-    soup = BeautifulSoup(html, "lxml")
-    p1 = soup.find_all("section", class_="plugin-section")[1]
-    plugins = p1.find_all("article")
-    for plugin in plugins:
-        name = plugin.find("h3").text
-        # url = plugin.find("h3").find("a").get("href")
-        url = plugin.find("h3").find("a")["href"]
-        rating = plugin.find('span', class_="rating-count").find("a").text
-        r = refined(rating)
-        print(r)
+import socket
+
+URLS = {
+    '/': 'index page',
+    '/blog': 'blog page'
+}
 
 
-def main():
-    url = "https://ru.wordpress.org/plugins/"
-    get_data(get_html(url))
+def parse_request(request):
+    parsed = request.split()
+    method = parsed[0]
+    url = parsed[1]
+    return method, url
 
 
-if __name__ == '__main__':
-    main()
+def generate_headers(method, url):
+    if method != 'GET':
+        return 'HTTP/1.1 405 Method Not Allowed!\n\n', 405
+    if url not in URLS:
+        return 'HTTP/1.1 404 Page Not Found!\n\n', 404
+    return 'HTTP/1.1 200 OK!\n\n', 200
+
+
+def generate_content(code, url):
+    if code == 404:
+        return '<h1>404</h1><h3>Not Found</h3>'
+    if code == 405:
+        return '<h1>405</h1><h3>Method Not Allowed</h3>'
+    return URLS[url]
+
+
+def generate_response(request):
+    method, url = parse_request(request)
+    headers, code = generate_headers(method, url)
+    body = generate_content(code, url)
+    return (headers + body).encode()
+
+
+def run():
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind(('127.0.0.1', 5000))
+    server_socket.listen()
+
+    while True:
+        client_socket, addr = server_socket.accept()
+        request = client_socket.recv(1024)
+
+        print(f"Клиент: {addr} => \n{request.decode('utf-8')}\n")
+
+        response = generate_response(request.decode())
+        client_socket.sendall(response)
+        client_socket.close()
+
+
+if __name__ == "__main__":
+    run()

@@ -7295,10 +7295,11 @@ import csv
 
 
 import socket
+from view import index, blog
 
 URLS = {
-    '/': 'index page',
-    '/blog': 'blog page'
+    '/': index,
+    '/blog': blog
 }
 
 
@@ -7322,7 +7323,7 @@ def generate_content(code, url):
         return '<h1>404</h1><h3>Not Found</h3>'
     if code == 405:
         return '<h1>405</h1><h3>Method Not Allowed</h3>'
-    return URLS[url]
+    return URLS[url]()
 
 
 def generate_response(request):

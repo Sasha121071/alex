@@ -63,4 +63,24 @@ MAX
 
 EXISTS 
 
+SQLALCHEMY ORM
+
+pip install sqlalchemy
+
+models
+	__init__.py
+	database.py
+	group.py
+	lesson.py
+	student.py
+	
+create_database.py	
+
+pip install faker
+
+
+
+
+
+
 

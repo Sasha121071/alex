@@ -7426,7 +7426,7 @@ import csv
 # res2 = cur.fetchmany(2)
 # print(res2)
 
-import sqlite3
+# import sqlite3
 
 # cars = [
 #     ('BMW', 54000),
@@ -7492,29 +7492,123 @@ import sqlite3
 #         con.close()
 
 
-with sqlite3.connect('cars.db') as con:
-    cur = con.cursor()
-    cur.execute("""
-    CREATE TABLE IF NOT EXISTS cars(
-        car_id INTEGER PRIMARY KEY AUTOINCREMENT,
-        model TEXT,
-        price INTEGER
-    )
-    """)
+# with sqlite3.connect('cars.db') as con:
+#     cur = con.cursor()
+#     cur.execute("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     )
+#     """)
+#
+#     cur.execute("SELECT model, price FROM cars")
+#
+#     # for res in cur:
+#     #     print(res)
+#
+#     # rows = cur.fetchall()
+#     # print(rows)
+#
+#     rows = cur.fetchone()
+#     print(rows)
+#
+#     rows2 = cur.fetchmany(5)
+#     print(rows2)
+#
+#     rows3 = cur.fetchall()
+#     print(rows3)
 
-    cur.execute("SELECT model, price FROM cars")
 
-    # for res in cur:
-    #     print(res)
+# with sqlite3.connect('cars.db') as con:
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS cars(
+#         car_id INTEGER PRIMARY KEY AUTOINCREMENT,
+#         model TEXT,
+#         price INTEGER
+#     );
+#     CREATE TABLE IF NOT EXISTS cost(
+#         name TEXT, tr_in INTEGER, buy INTEGER
+#     );
+#     """)
+#
+#     # cur.execute("INSERT INTO cars VALUES(NULL, 'Запорожец', 1000)")
+#     # last_row_id = cur.lastrowid  # lastrowid - будет содержать id последней записи
+#     # buy_car_id = 2
+#     # cur.execute("INSERT INTO cost VALUES('Илья', ?, ?)", (last_row_id, buy_car_id))
+#     cur.execute("SELECT model, price FROM cars")
+#
+#     for res in cur:
+#         # print(res[0], res[1])
+#         print(res['model'], res['price'])
 
-    # rows = cur.fetchall()
-    # print(rows)
+# def read_ava(n):
+#     try:
+#         with open(f"avatars/{n}.png", 'rb') as f:
+#             return f.read()
+#     except IOError as e:
+#         print(e)
+#         return False
+#
+#
+# def write_ava(name, data):
+#     try:
+#         with open(name, 'wb') as f:
+#             f.write(data)
+#     except IOError as e:
+#         print(e)
+#         return False
+#     return True
+#
+#
+# with sqlite3.connect('cars.db') as con:
+#     con.row_factory = sqlite3.Row
+#     cur = con.cursor()
+#     cur.executescript("""
+#     CREATE TABLE IF NOT EXISTS users(
+#         name TEXT,
+#         ava BLOB,
+#         score INTEGER
+#     );
+#     """)
+#
+#     # img = read_ava(1)
+#     # if img:
+#     #     binary = sqlite3.Binary(img)
+#     #     cur.execute("INSERT INTO users VALUES('Илья', ?, 1000)", (binary,))
+#
+#     cur.execute("SELECT ava FROM users")
+#     img = cur.fetchone()['ava']
+#
+#     write_ava('out.png', img)
 
-    rows = cur.fetchone()
-    print(rows)
 
-    rows2 = cur.fetchmany(5)
-    print(rows2)
+# with sqlite3.connect('cars.db') as con:
+#     cur = con.cursor()
+#
+#     with open('sql_dump.sql', "w") as f:
+#         for sql in con.iterdump():
+#             f.write(sql)
 
-    rows3 = cur.fetchall()
-    print(rows3)
+# with sqlite3.connect('automobile.db') as con:
+#     cur = con.cursor()
+#
+#     with open('sql_dump.sql', "r") as f:
+#         sql = f.read()
+#         cur.executescript(sql)
+
+
+import os
+
+from models.database import DATABASE_NAME, Session
+import create_database as db_creator
+
+
+if __name__ == '__main__':
+    db_is_created = os.path.exists(DATABASE_NAME)
+    if not db_is_created:
+        db_creator.create_db()
+
+    session = Session()

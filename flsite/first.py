@@ -5,9 +5,11 @@ from FDataBase import FDataBase
 
 DATABASE = '/tmp/flsk.db'
 DEBUG = True
-SECRET_KEY = '2b71c1ed2dc317653673b285fcbe70da5a616dce'
+SECRET_KEY = '0aafadb67dea53d030ffbe065e02cbac3cb14192'
 
 app = Flask(__name__)
+app.config.from_object(__name__)
+
 # app.config['SECRET_KEY'] = 'rtertg465464fdfhg8465464hgfhfgh113103'
 app.config.update(dict(DATABASE=os.path.join(app.root_path, 'flsk.db')))
 
@@ -42,7 +44,7 @@ def get_db():
 def index():
     db = get_db()
     dbase = FDataBase(db)
-    return render_template('index.html', title="Главная", menu=dbase.get_menu())
+    return render_template('index.html', title="Главная", menu=dbase.get_menu(), posts=dbase.get_posts_annonce())
 
 
 @app.route("/add_post", methods=["POST", "GET"])
@@ -52,7 +54,7 @@ def add_post():
 
     if request.method == "POST":
         if len(request.form['name']) > 4 and len(request.form['post']) > 10:
-            res = dbase.add_post(request.form['name'], request.form['post'])
+            res = dbase.add_post(request.form['name'], request.form['post'], request.form['url'])
             if not res:
                 flash('Ошибка добавления статьи', category="error")
             else:
@@ -61,6 +63,14 @@ def add_post():
             flash('Ошибка добавления статьи', category="error")
 
     return render_template('add_post.html', menu=dbase.get_menu(), title="Добавление статьи")
+
+
+@app.route("/post/<alias>")
+def show_post(alias):
+    db = get_db()
+    dbase = FDataBase(db)
+    title, post = dbase.get_post(alias)
+    return render_template('post.html', menu=dbase.get_menu(), title=title, post=post)
 
 
 @app.route("/about")

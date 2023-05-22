@@ -9,6 +9,7 @@
 
 <form action="{{ url_for('add_post') }}" method="post">
     <p>Название статьи: <input type="text" name="name" required></p>
+    <p>URL статьи: <input type="text" name="url" required></p>
     <p>Текст статьи:</p>
     <p><textarea name="post" cols="40" rows="7"></textarea></p>
     <p><input type="submit" value="Добавить"></p>

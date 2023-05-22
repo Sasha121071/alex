@@ -101,9 +101,11 @@ flsite
 		base.html
 		contact.html
 		login.html
+		add_post.html
 	static
 		css
 			style.css
+FDataBase.py
 
 
 int - должны присутствовать только цифры
@@ -117,5 +119,12 @@ http://127.0.0.1:5000/contact
 
 flash
 get_flashed_messages
+
+import os
+os.urandom(20).hex()
+
+
+from flsite.first import create_db
+create_db()
 
 

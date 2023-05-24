@@ -102,6 +102,7 @@ flsite
 		contact.html
 		login.html
 		add_post.html
+		post.html
 	static
 		css
 			style.css
@@ -127,4 +128,17 @@ os.urandom(20).hex()
 from flsite.first import create_db
 create_db()
 
+/post/<int:id_post>
+http://127.0.0.1:5000/post/1
+
+tasks
+	static
+		css
+			style.css
+	templates
+		base.html
+		index.html
+	app.py
+	
+pip install flask-sqlalchemy
 

@@ -24,3 +24,12 @@ body{
     background: #CCC;
     font-size: 18px;
 }
+input{
+    width: 98%;
+    padding: 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+}
+.text{
+    text-align: left;
+}

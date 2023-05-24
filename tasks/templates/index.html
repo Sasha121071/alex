@@ -19,7 +19,7 @@
         <div class="text">{{ task.content }}</div>
         <div>{{ task.date_created.date() }}</div>
         <div><a href="/delete/{{ task.id }}">Удалить</a></div>
-        <div><a href="">Обновить</a></div>
+        <div><a href="/update/{{ task.id }}">Обновить</a></div>
         {% endfor %}
     </div>
     {% endif %}

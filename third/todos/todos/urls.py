@@ -24,7 +24,11 @@ urlpatterns = [
 
     # Auth (страница для входа в личный кабинет)
     path('signup/', views.signupuser, name='signupuser'),
+    path('logout/', views.logoutuser, name='logoutuser'),
+    path('login/', views.loginuser, name='loginuser'),
 
     # Todos
+    path('', views.home, name='home'),
     path('current/', views.currenttodos, name='currenttodos'),
+    path('create/', views.createtodo, name='createtodo'),
 ]

@@ -185,5 +185,25 @@ python manage.py migrate
 python manage.py createsuperuser
 
 
+third
+
+django-admin startproject todos
+python manage.py startapp todo
+
+python manage.py migrate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		
